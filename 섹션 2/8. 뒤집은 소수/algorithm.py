@@ -1,24 +1,16 @@
-def is_measure(n,k):
-    cnt = 0
-    for i in range(1, n+1):
-        if n%i == 0:
-            cnt += 1
-        if cnt == k:
-            print(i)
-            return i
-    print(-1)
-    return -1
-
 for i in range(1, 6):
-    f = open(f"섹션 2/1. k번째 약수/in{i}.txt", "r")
-    line = f.readline()
-    n, k=map(int, line.split())
+    f = open(f"섹션 2/8. 뒤집은 소수/in{i}.txt", "r")
+    lines = f.readlines()
     f.close()
-    f = open(f"섹션 2/1. k번째 약수/out{i}.txt", "r")
-    answer = int(f.readline())
-    f.close()
+    nums = lines[1].split()
+    reverse_nums = [ int(i[::-1]) for i in nums ]
+    for i, v in enumerate(reverse_nums):
+        if v == 2:
+            print(2, end=' ')
 
-    if is_measure(n,k) == answer:
-        print(f"in{i} ===== 정답입니다.")
-    else:
-        print(f"in{i} ===== 오답입니다.")
+        for j in range(2, v):
+            if v%j == 0 :
+                break
+            if j == v-1 :
+                print(reverse_nums[i], end=' ')
+    print("\n")

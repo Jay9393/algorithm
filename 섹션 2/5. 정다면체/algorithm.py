@@ -1,24 +1,31 @@
-def is_measure(n,k):
-    cnt = 0
-    for i in range(1, n+1):
-        if n%i == 0:
-            cnt += 1
-        if cnt == k:
-            print(i)
-            return i
-    print(-1)
-    return -1
+def digit_sum(x):
+    return sum(list(map(int, list(str(x)))))
 
 for i in range(1, 6):
-    f = open(f"섹션 2/1. k번째 약수/in{i}.txt", "r")
+    f = open(f"섹션 2/5. 정다면체/in{i}.txt", "r")
     line = f.readline()
-    n, k=map(int, line.split())
     f.close()
-    f = open(f"섹션 2/1. k번째 약수/out{i}.txt", "r")
-    answer = int(f.readline())
-    f.close()
+    s = list(map(int, line.split()))
+    nums = []
 
-    if is_measure(n,k) == answer:
-        print(f"in{i} ===== 정답입니다.")
-    else:
-        print(f"in{i} ===== 오답입니다.")
+    for i in range(1, s[0]+1):
+        for j in range(1, s[1]+1):
+            nums.append(i+j)
+
+    set_nums = set(nums)
+    dic_nums = {}
+
+    for i in set_nums:
+        dic_nums[i] = nums.count(i)
+
+    max_num = max(dic_nums.values())
+    answer =[]
+
+    for k, v in dic_nums.items():
+        if v == max_num:
+            answer.append(k)
+    answer.sort()
+
+    for i in answer:
+        print(i, end=' ')
+    print('\n')
