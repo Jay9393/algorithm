@@ -1,13 +1,14 @@
 for i in range(1, 6):
-    f = open(f"섹션 2/1. k번째 약수/in{i}.txt", "r")
-    line = f.readline()
+    f = open(f"섹션 2/10. 점수 계산/in{i}.txt", "r")
+    lines = f.readlines()
     f.close()
-    n, k=map(int, line.split())
-    f = open(f"섹션 2/1. k번째 약수/out{i}.txt", "r")
-    answer = int(f.readline())
-    f.close()
+    n = int(lines[0])
+    answers = list(map(int, lines[1].split()))
+    points = [0]
 
-    if is_measure(n,k) == answer:
-        print(f"in{i} ===== 정답입니다.")
-    else:
-        print(f"in{i} ===== 오답입니다.")
+    for i in range(0, n):
+        if answers[i] == 1:
+            points.append(points[i]+1)
+        elif answers[i] == 0:
+            points.append(0)
+    print(sum(points))
